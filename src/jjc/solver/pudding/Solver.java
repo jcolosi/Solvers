@@ -28,10 +28,14 @@ public class Solver {
 	static private final String game424 = "       :m  i  m:   b   :   b   :ibbbbbi:   b   :   b   :m  i  h:       :";
 	static private final String star424 = "       :       :       :       :       :       :  s    :  s s  :       :";
 
+	@SuppressWarnings("unused")
 	static private final String game0 = "      m:       :       :       :       :       :       :       :m     m:";
+	@SuppressWarnings("unused")
 	static private final String star0 = " s     :ss     :       :       :       :       :       :       :       :";
 
+	@SuppressWarnings("unused")
 	static private final String game1 = "bbbbbbb:      h:       :       :       :       :       :       :m     m:";
+	@SuppressWarnings("unused")
 	static private final String star1 = "       : s     :ss     :       :       :       :       :       :       :";
 
 	private HashSet<String> cache;
@@ -65,6 +69,7 @@ public class Solver {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private State step(State state, Move move) {
 		State newState = state.move(move);
 		if (newState != null) {

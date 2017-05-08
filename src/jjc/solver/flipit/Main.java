@@ -44,6 +44,7 @@ public class Main extends PApplet {
 
 	private Cell[][] cells;
 	private Cell[][] original;
+	@SuppressWarnings("unused")
 	private long frame = 0;
 	private boolean drawFlag = true;
 
@@ -204,10 +205,8 @@ public class Main extends PApplet {
 					count = 0;
 					if (i > 0 && cells[i][j].matches(cells[i - 1][j])) count++;
 					if (j > 0 && cells[i][j].color == cells[i][j - 1].color) count++;
-					if (i < GRIDS - 1 && cells[i][j].color == cells[i + 1][j].color)
-						count++;
-					if (j < GRIDS - 1 && cells[i][j].color == cells[i][j + 1].color)
-						count++;
+					if (i < GRIDS - 1 && cells[i][j].color == cells[i + 1][j].color) count++;
+					if (j < GRIDS - 1 && cells[i][j].color == cells[i][j + 1].color) count++;
 					if (count > 1) {
 						cascadeClear(i, j, cells[i][j]);
 						any = true;
@@ -220,14 +219,10 @@ public class Main extends PApplet {
 
 	public void cascadeClear(int i, int j, Cell toClear) {
 		cells[i][j] = Cell.EMPTY;
-		if (i > 0 && cells[i - 1][j].matches(toClear))
-			cascadeClear(i - 1, j, toClear);
-		if (j > 0 && cells[i][j - 1].matches(toClear))
-			cascadeClear(i, j - 1, toClear);
-		if (i < GRIDS - 1 && cells[i + 1][j].matches(toClear))
-			cascadeClear(i + 1, j, toClear);
-		if (j < GRIDS - 1 && cells[i][j + 1].matches(toClear))
-			cascadeClear(i, j + 1, toClear);
+		if (i > 0 && cells[i - 1][j].matches(toClear)) cascadeClear(i - 1, j, toClear);
+		if (j > 0 && cells[i][j - 1].matches(toClear)) cascadeClear(i, j - 1, toClear);
+		if (i < GRIDS - 1 && cells[i + 1][j].matches(toClear)) cascadeClear(i + 1, j, toClear);
+		if (j < GRIDS - 1 && cells[i][j + 1].matches(toClear)) cascadeClear(i, j + 1, toClear);
 	}
 
 	public void settle() {
@@ -313,13 +308,11 @@ public class Main extends PApplet {
 			for (int i = 0; i < GRIDS; i++) {
 				for (int j = 0; j < GRIDS; j++) {
 					cell = cells[i][j];
-					fill(cell.color.getRed(), cell.color.getGreen(),
-							cell.color.getBlue());
+					fill(cell.color.getRed(), cell.color.getGreen(), cell.color.getBlue());
 					if (cell.shape == Shape.SQUARE) {
 						rect((i * UNIT) + 1, (j * UNIT) + 1, UNIT - 1, UNIT - 1);
 					} else {
-						ellipse((i * UNIT) + (UNIT / 2), (j * UNIT) + (UNIT / 2), UNIT - 1,
-								UNIT - 1);
+						ellipse((i * UNIT) + (UNIT / 2), (j * UNIT) + (UNIT / 2), UNIT - 1, UNIT - 1);
 					}
 				}
 			}
@@ -328,19 +321,16 @@ public class Main extends PApplet {
 			for (Cell btn : Cell.values()) {
 				fill(btn.color.getRed(), btn.color.getGreen(), btn.color.getBlue());
 				if (btn.shape == Shape.SQUARE) {
-					rect((BUTTON * (index / 6)) + 1 + HEIGHT, (BUTTON * (index % 6)) + 1,
-							BUTTON - 1, BUTTON - 1);
+					rect((BUTTON * (index / 6)) + 1 + HEIGHT, (BUTTON * (index % 6)) + 1, BUTTON - 1, BUTTON - 1);
 				} else {
 					ellipse((BUTTON * (index / 6)) + 1 + HEIGHT + (BUTTON / 2),
-							(BUTTON * (index % 6)) + 1 + (BUTTON / 2), BUTTON - 1,
-							BUTTON - 1);
+							(BUTTON * (index % 6)) + 1 + (BUTTON / 2), BUTTON - 1, BUTTON - 1);
 				}
 				index++;
 			}
 
 			if (mode.hasBack()) image(beginning, HEIGHT, BUTTON * 6, BUTTON, BUTTON);
-			if (mode.hasNext())
-				image(next, HEIGHT + BUTTON, BUTTON * 6, BUTTON, BUTTON);
+			if (mode.hasNext()) image(next, HEIGHT + BUTTON, BUTTON * 6, BUTTON, BUTTON);
 
 			image(flipup, HEIGHT, BUTTON * 7, BUTTON, BUTTON);
 			image(reset, HEIGHT + BUTTON, BUTTON * 7, BUTTON, BUTTON);

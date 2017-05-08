@@ -4,8 +4,7 @@ public class State {
 	static public final short WIDTH = 7;
 	static public final short HEIGHT = 9;
 	static private final char EMPTY = ' ';
-	static private final Exception WRONG_SIZE = new Exception(
-			"Wrong size for input");
+	static private final Exception WRONG_SIZE = new Exception("Wrong size for input");
 
 	char[][] board;
 	boolean[][] stars;
@@ -256,8 +255,7 @@ public class State {
 					if (monsters[i][j] == move.group) {
 						if (i == 0) return Result.FALL;
 						if (isIce(board[i - 1][j])) return Result.STOP_ICE;
-						if (isMonster(board[i - 1][j]) && monsters[i - 1][j] != move.group)
-							return Result.STOP_MONSTER;
+						if (isMonster(board[i - 1][j]) && monsters[i - 1][j] != move.group) return Result.STOP_MONSTER;
 						if (isBlock(board[i - 1][j])) return Result.STOP_BLOCK;
 					}
 				}
@@ -268,8 +266,7 @@ public class State {
 					if (monsters[i][j] == move.group) {
 						if (j == 0) return Result.FALL;
 						if (isIce(board[i][j - 1])) return Result.STOP_ICE;
-						if (isMonster(board[i][j - 1]) && monsters[i][j - 1] != move.group)
-							return Result.STOP_MONSTER;
+						if (isMonster(board[i][j - 1]) && monsters[i][j - 1] != move.group) return Result.STOP_MONSTER;
 						if (isBlock(board[i][j - 1])) return Result.STOP_BLOCK;
 					}
 				}
@@ -280,8 +277,7 @@ public class State {
 					if (monsters[i][j] == move.group) {
 						if (i + 1 == WIDTH) return Result.FALL;
 						if (isIce(board[i + 1][j])) return Result.STOP_ICE;
-						if (isMonster(board[i + 1][j]) && monsters[i + 1][j] != move.group)
-							return Result.STOP_MONSTER;
+						if (isMonster(board[i + 1][j]) && monsters[i + 1][j] != move.group) return Result.STOP_MONSTER;
 						if (isBlock(board[i + 1][j])) return Result.STOP_BLOCK;
 					}
 				}
@@ -292,8 +288,7 @@ public class State {
 					if (monsters[i][j] == move.group) {
 						if (j + 1 == HEIGHT) return Result.FALL;
 						if (isIce(board[i][j + 1])) return Result.STOP_ICE;
-						if (isMonster(board[i][j + 1]) && monsters[i][j + 1] != move.group)
-							return Result.STOP_MONSTER;
+						if (isMonster(board[i][j + 1]) && monsters[i][j + 1] != move.group) return Result.STOP_MONSTER;
 						if (isBlock(board[i][j + 1])) return Result.STOP_BLOCK;
 					}
 				}
@@ -376,8 +371,7 @@ public class State {
 		while (true) {
 			Result result = canMove(move);
 			if (result == Result.FALL) return false;
-			if (result == Result.STOP_BLOCK || result == Result.STOP_ICE
-					|| result == Result.STOP_MONSTER) {
+			if (result == Result.STOP_BLOCK || result == Result.STOP_ICE || result == Result.STOP_MONSTER) {
 				breakIce(move);
 				buildMonsters();
 				mergeMonsters();
@@ -472,6 +466,7 @@ public class State {
 		return x == 'b';
 	}
 
+	@SuppressWarnings("unused")
 	private boolean isEmpty(char x) {
 		return x == EMPTY;
 	}
